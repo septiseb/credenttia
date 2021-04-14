@@ -28,6 +28,6 @@ export default function MainForm() {
                     <Button>Cotizar/Más info</Button>
                 </Stack>
             </>
-       
+        
     )
 }
