@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import { ChakraProvider, resetCSS } from "@chakra-ui/react"
 import Navbar from './components/Navbar.tsx'
-import MainForm from './components/MainForm';
 import MainPage from './components/MainPage';
 
 function App() {
@@ -10,9 +9,7 @@ function App() {
     <ChakraProvider>
     <resetCSS />
     <Navbar />
-      <MainPage />
-      
-      
+      <MainPage />      
       </ChakraProvider>
   );
 }
