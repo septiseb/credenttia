@@ -2,6 +2,7 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import InfoForm from "./InfoForm";
 
 const navigation = [
   { name: "Product", href: "#" },
@@ -114,6 +115,9 @@ export default function MainSection() {
                       </a>
                     </div>
                   </div>
+                </div>
+                <div className="shadow-md mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                  <InfoForm/>
                 </div>
               </main>
             </div>
