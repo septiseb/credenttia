@@ -35,7 +35,7 @@ export default function RequestInfoForm(props) {
     //////////
 
     const [clientRequestInfoForm, setClientRequestInfoForm] = useState({
-        name: '',
+        name:'',
         company: '',
         email:'',
         mobNumber:'',
@@ -65,12 +65,12 @@ export default function RequestInfoForm(props) {
     return (
             <>    
                 <h4 className='block text-gray-700 font-bold mt-3 pt-2 pl-2 text-3xl' >Solicita más información</h4>
-                <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">
+                <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"  onSubmit={submitInfoRequest} method="POST" data-netlify="true">
                     
                     <div className='overflow-hidden sm:rounded-md'>
 
                             <div className="col-span-6 sm:col-span-1 mb-4">
-                                <label for='name' className="block text-md font-medium text-gray-600">Nombre</label >
+                                <label for='name' className="block text-md font-medium text-gray-600">Nombre</label>
                                 <input  type='text'
                                         name='name' 
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
@@ -80,9 +80,10 @@ export default function RequestInfoForm(props) {
                             </div>
 
                             <div className="col-span-6 sm:col-span-3 mb-4">
-                                <label className="block text-md font-medium text-gray-600" >Empresa/Institución</label >
+                                <label className="block text-md font-medium text-gray-600" >Empresa/Institución</label>
                                 <input name='company' 
                                         type='text' 
+                                        required
                                         placeholder='Nombre de la empresa o institución' 
                                         onChange={(e) => handleChange(e)} 
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
@@ -90,29 +91,30 @@ export default function RequestInfoForm(props) {
                             </div>
 
                             <div className="col-span-6 sm:col-span-3 mb-4">
-                                <label className="block text-md font-medium text-gray-600" >Email</label >
+                                <label className="block text-md font-medium text-gray-600" >Email</label>
                                 <input name='email' 
                                         type='email' 
                                         placeholder='abc@mail.com' 
+                                        required
                                         onChange={(e) => handleChange(e)} 
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
                                     />
                             </div>
 
                             <div className="col-span-6 sm:col-span-3 mb-4">
-                                <label className="block text-md font-medium text-gray-600">Número de contacto</label >
+                                <label className="block text-md font-medium text-gray-600">Número de contacto</label>
                                 <input name='mobNumber' 
-                                        type='text' 
+                                        required
+                                        type='tel' 
                                         placeholder='10 dígitos' 
                                         onChange={(e) => handleChange(e)} 
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
                                     />
                             </div>
                         
-
                         
                             <div className="col-span-6 sm:col-span-3 mb-4">
-                                <label className="block text-md font-medium text-gray-600">Tipo de empresa/institución</label >
+                                <label className="block text-md font-medium text-gray-600">Tipo de documento</label>
                                 <select name='orgType' 
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
                                         placeholder="-"
@@ -120,15 +122,26 @@ export default function RequestInfoForm(props) {
                                         onChange={(e) => handleSelectOrgTypeValue(e)}
                                     >
                                     <option value="-">-</option>
-                                    <option value="Escolar">Educación escolar</option>
-                                    <option value="ONG/Gob">ONG, Institución Pública</option>
-                                    <option value="Capacitador">Capacitadora empresarial</option>
-                                    <option value="Otro">Capacitadora empresarial</option>
+                                    <option value="Escolar">Diploma</option> 
+                                    <option value="ONG/Gob">Certificados</option>
+                                    <option value="Capacitador">Título profesional</option>
+                                    <option value="Otro">Otros</option> 
+                                
                                 </select>
+                                {orgTypeValue === 'Otro' ?
+                                        <div className="col-span-6 mt:1 sm:col-span-3 mb-4">
+                                        <input name='otroCert' 
+                                                type='text' 
+                                                placeholder='Agrega otros' 
+                                                onChange={(e) => handleChange(e)} 
+                                                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
+                                            />
+                                        </div> : ''
+                                    }
                             </div>
 
                             <div className="col-span-6 sm:col-span-3 mb-4">
-                                <label className="block text-md font-medium text-gray-600">Certificados/diplomas entregados al mes</label >
+                                <label className="block text-md font-medium text-gray-600">Certificados/diplomas entregados al mes</label>
                                 <select name='certNum' 
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
                                         placeholder='-' 
@@ -144,10 +157,11 @@ export default function RequestInfoForm(props) {
                             </div>
 
                             <div className="col-span-6 sm:col-span-3 mb-4">
-                                <label className="block text-md font-medium text-gray-600">Actualmente usa certificados/diplomas digitales</label >   
+                                <label className="block text-md font-medium text-gray-600">Actualmente usa certificados/diplomas digitales</label>   
                                 <select name='certUse' 
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
                                         placeholder="-"
+                                        
                                         value={certUseValue}
                                         onChange={(e) => handleSelectCertUseValue(e)}
                                     >
@@ -161,7 +175,7 @@ export default function RequestInfoForm(props) {
                     </div>
                     <button type='submit' 
                             className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
-                            onClick={submitInfoRequest}
+                            
                             >Cotizar/Más info</button>
                 
                 </form>
