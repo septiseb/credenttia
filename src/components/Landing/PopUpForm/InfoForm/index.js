@@ -6,6 +6,7 @@ export default function InfoForm() {
 
     const [showForm, setShowForm] = useState(true)
     const [clientInfo, setClientInfo] = useState()
+    
 
     return (
         <div>

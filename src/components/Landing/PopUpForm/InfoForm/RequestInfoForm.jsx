@@ -36,6 +36,7 @@ export default function RequestInfoForm(props) {
 
     const [clientRequestInfoForm, setClientRequestInfoForm] = useState({
         name:'',
+        lastName:'',
         company: '',
         email:'',
         mobNumber:'',
@@ -64,13 +65,13 @@ export default function RequestInfoForm(props) {
 
     return (
             <>    
-                <h4 className='block text-gray-700 font-bold mt-3 pt-2 pl-2 text-3xl' >Solicita más información</h4>
+                <h4 className='block text-gray-700 font-bold mt-3 pt-2 pl-2 text-3xl text-center' >Solicita más información</h4>
                 <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"  onSubmit={submitInfoRequest} method="POST" data-netlify="true">
                     
                     <div className='overflow-hidden sm:rounded-md'>
 
                             <div className="col-span-6 sm:col-span-1 mb-4">
-                                <label for='name' className="block text-md font-medium text-gray-600">Nombre</label>
+                                <label for='name' className="block text-md font-medium text-gray-600">Nombre<span className="text-red-600">*</span></label>
                                 <input  type='text'
                                         name='name' 
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
@@ -79,8 +80,18 @@ export default function RequestInfoForm(props) {
                                     />
                             </div>
 
+                            <div className="col-span-6 sm:col-span-1 mb-4">
+                                <label for='lastName' className="block text-md font-medium text-gray-600">Apellido<span className="text-red-600">*</span></label>
+                                <input  type='text'
+                                        name='lastName' 
+                                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
+                                        placeholder='Apellido' 
+                                        onChange={(e) => handleChange(e)} 
+                                    />
+                            </div>
+
                             <div className="col-span-6 sm:col-span-3 mb-4">
-                                <label className="block text-md font-medium text-gray-600" >Empresa/Institución</label>
+                                <label className="block text-md font-medium text-gray-600" >Empresa/Institución<span className="text-red-600">*</span></label>
                                 <input name='company' 
                                         type='text' 
                                         required
@@ -91,9 +102,10 @@ export default function RequestInfoForm(props) {
                             </div>
 
                             <div className="col-span-6 sm:col-span-3 mb-4">
-                                <label className="block text-md font-medium text-gray-600" >Email</label>
+                                <label className="block text-md font-medium text-gray-600" >Email<span className="text-red-600">*</span></label>
                                 <input name='email' 
                                         type='email' 
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                         placeholder='abc@mail.com' 
                                         required
                                         onChange={(e) => handleChange(e)} 
@@ -102,7 +114,7 @@ export default function RequestInfoForm(props) {
                             </div>
 
                             <div className="col-span-6 sm:col-span-3 mb-4">
-                                <label className="block text-md font-medium text-gray-600">Número de contacto</label>
+                                <label className="block text-md font-medium text-gray-600">Número de contacto<span className="text-red-600">*</span></label>
                                 <input name='mobNumber' 
                                         required
                                         type='tel' 
@@ -141,7 +153,7 @@ export default function RequestInfoForm(props) {
                             </div>
 
                             <div className="col-span-6 sm:col-span-3 mb-4">
-                                <label className="block text-md font-medium text-gray-600">Certificados/diplomas entregados al mes</label>
+                                <label className="block text-md font-medium text-gray-600">Certificados/diplomas entregados al mes<span className="text-red-600">*</span></label>
                                 <select name='certNum' 
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md"
                                         placeholder='-' 

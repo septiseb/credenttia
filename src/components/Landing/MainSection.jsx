@@ -2,7 +2,7 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import InfoForm from "./InfoForm";
+import PopUpForm from "./PopUpForm"
 
 const navigation = [
   { name: "Product", href: "#" },
@@ -12,6 +12,7 @@ const navigation = [
 ];
 
 export default function MainSection() {
+
   return (
     <Popover className="relative bg-white overflow-hidden">
       {({ open }) => (
@@ -98,14 +99,12 @@ export default function MainSection() {
                     occaecat fugiat aliqua.
                   </p>
                   <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                    {/* Boton de preba popup */}
                     <div className="rounded-md shadow">
-                      <a
-                        href="#"
-                        className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
-                      >
-                        Get started
-                      </a>
+                        <PopUpForm />
                     </div>
+
+
                     <div className="mt-3 sm:mt-0 sm:ml-3">
                       <a
                         href="#"
@@ -116,9 +115,9 @@ export default function MainSection() {
                     </div>
                   </div>
                 </div>
-                <div className="shadow-md mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                {/* <div className="shadow-md mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                   <InfoForm/>
-                </div>
+                </div> */}
               </main>
             </div>
           </div>
