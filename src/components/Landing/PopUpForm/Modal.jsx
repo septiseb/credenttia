@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import ReactDOM from 'react-dom';
 import FocusTrap from 'focus-trap-react'
 import InfoForm from './InfoForm'
+import './index.css'
 
 export default function Modal(props) {
 
