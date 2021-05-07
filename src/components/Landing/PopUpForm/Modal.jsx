@@ -17,6 +17,7 @@ export default function Modal(props) {
 
     function onClickOutside(event) {
         if(modalRef.current === event.target) {
+            console.log(modalRef.current)
             return closeModal()
         }
     }
