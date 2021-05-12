@@ -12,12 +12,12 @@ export default function Navbar(props) {
 
   return (
     <>
-      <nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20 text-2xl md:text-md ">
+      <nav class=" bg-gray-200 w-full flex relative justify-between items-center mx-auto px-8 h-20 text-2xl md:text-md -mb-10 ">
 
           <div class="inline-flex">
               <a  href="/"
                   ><div class="hidden md:block">
-                      <img src='/logo.png' alt='logo' width={450}/>
+                      <img src='/logo.png' alt='logo' width={250}/>
                   </div>
                   <div class="block md:hidden">
                     <img src='/logo.png' />
