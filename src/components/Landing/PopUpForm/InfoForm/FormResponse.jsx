@@ -39,8 +39,6 @@ export default function FormResponse(props) {
                     {/* <p  className='block text-gray-500  mt-3 pt-2 pl-2 text-3xl sm:mt-5 sm:text-lg sm:text-center sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0'>{showPriceOption}</p> */}
                     <p  className='block text-gray-500 mt-3 pt-2 pl-2 text-3xl sm:mt-5 sm:text-lg sm:text-center sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0'>En breve nos cominicaremos contigo para darte más información.</p>
                 </div>
-            <button type='submit' //Bottar cuando este listo
-            onClick={(e) => returnForm(e)}>Mostrar Form</button>
             </>
     )
 }

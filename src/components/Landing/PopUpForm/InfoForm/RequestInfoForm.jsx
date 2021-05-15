@@ -49,25 +49,35 @@ export default function RequestInfoForm(props) {
     function handleChange(e) {
         e.preventDefault()
         setClientRequestInfoForm({
-            ...clientRequestInfoForm,
+            ...clientRequestInfoForm,quest
             [e.target.name]: e.target.value
         })
-        
     }
 
-    function submitInfoRequest() {
+    function submitInfoRequest(e) {
+        e.preventDefault()
         setClientInfo(clientRequestInfoForm)
+        fetch('/', { //<-- fetch para subir forms a netlify
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+            body: encode({ 'form-name': 'contact', ...clientRequestInfoForm })
+            .then(() => alert('Success!'))
+            .catch(error => alert(error))
+        })
         setShowForm(false)
-        
     }
     
-    
+    const encode = (data) => {
+        return Object.keys(data)
+            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+            .join("&");
+    }
 
     return (
             <>    
                 <h4 className='block text-gray-700 font-bold mt-3 pt-2 pl-2 text-3xl text-center' >Solicita más información</h4>
-                <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"  onSubmit={submitInfoRequest} method="POST" data-netlify="true">
-                    
+                <form name='contactForm' className="bg-white rounded px-8 pt-6 pb-8 mb-4"  onSubmit={submitInfoRequest} method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contactForm" /> {/* <-- para uso de forms en Netlify */}
                     <div className='overflow-hidden sm:rounded-md'>
 
                             <div className="col-span-6 sm:col-span-1 mb-4">
