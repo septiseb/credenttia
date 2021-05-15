@@ -28,6 +28,36 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <form name="contactForm" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="lastName" />
+      <input type="text" name="company" />
+      <input type="tel" name="mobNumber" />
+      <input type="email" name="email" />
+      <select name='orgType' >
+          <option value="-">-</option>
+          <option value="Escolar">Diploma</option> 
+          <option value="ONG/Gob">Certificados</option>
+          <option value="Capacitador">Título profesional</option>
+          <option value="Otro">Otros</option> 
+      
+      </select>
+      <select name='certNum' >
+          <option value="-">-</option>
+          <option value="< 100">menos de 100</option>
+          <option value="100-500">de 100 a 500</option>
+          <option value="500-1000">500 a 1000</option>
+          <option value="> 1000">más de 1000</option>
+        </select>
+
+        <select name='certUse'>
+          <option value="-">-</option>
+          <option value='true'>Si</option>
+          <option value='false'>No</option>
+        </select>
+
+    </form>
+
     <div id="root"></div>
     <!--
       This HTML file is a template.

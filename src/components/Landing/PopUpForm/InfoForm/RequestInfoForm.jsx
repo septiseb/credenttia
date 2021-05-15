@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
 
+
+const encode = (data) => {
+        return Object.keys(data)
+            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+            .join("&");
+    }
+
 export default function RequestInfoForm(props) {
 
     const { setShowForm, setClientInfo } = props
@@ -49,34 +56,30 @@ export default function RequestInfoForm(props) {
     function handleChange(e) {
         e.preventDefault()
         setClientRequestInfoForm({
-            ...clientRequestInfoForm,quest
+            ...clientRequestInfoForm,
             [e.target.name]: e.target.value
         })
     }
 
-    function submitInfoRequest(e) {
+    async function submitInfoRequest(e) {
         e.preventDefault()
-        setClientInfo(clientRequestInfoForm)
-        fetch('/', { //<-- fetch para subir forms a netlify
+        await setClientInfo(clientRequestInfoForm)
+        await fetch('/', { //<-- fetch para subir forms a netlify
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-            body: encode({ 'form-name': 'contact', ...clientRequestInfoForm })
-            .then(() => alert('Success!'))
-            .catch(error => alert(error))
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: encode({ 'form-name': 'contactForm', ...clientRequestInfoForm })
         })
-        setShowForm(false)
-    }
+            .then(() => console.log('Success!'))
+            .catch(error => console.log(error))
+        
+        await setShowForm(false)
+    } 
     
-    const encode = (data) => {
-        return Object.keys(data)
-            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-            .join("&");
-    }
 
     return (
             <>    
                 <h4 className='block text-gray-700 font-bold mt-3 pt-2 pl-2 text-3xl text-center' >Solicita más información</h4>
-                <form name='contactForm' className="bg-white rounded px-8 pt-6 pb-8 mb-4"  onSubmit={submitInfoRequest} method="POST" data-netlify="true">
+                <form name='contactForm' className="bg-white rounded px-8 pt-6 pb-8 mb-4"  onSubmit={(e) => submitInfoRequest(e)}>
                     <input type="hidden" name="form-name" value="contactForm" /> {/* <-- para uso de forms en Netlify */}
                     <div className='overflow-hidden sm:rounded-md'>
 
